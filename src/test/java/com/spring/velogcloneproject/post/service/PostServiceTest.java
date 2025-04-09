@@ -1,6 +1,7 @@
 package com.spring.velogcloneproject.post.service;
 
 import com.spring.velogcloneproject.config.ModelMapperConfig;
+import com.spring.velogcloneproject.post.domain.dto.PostConverter;
 import com.spring.velogcloneproject.post.domain.dto.PostCreateRequest;
 import com.spring.velogcloneproject.post.domain.dto.PostCreateResponse;
 import com.spring.velogcloneproject.post.repository.PostMemoryRepositoryImpl;
@@ -17,10 +18,14 @@ class PostServiceTest {
     private PostMemoryRepositoryImpl postRepository;
     private AnnotationConfigApplicationContext context;
 
+
     @BeforeEach
     public void beforeEach() {
         postRepository = new PostMemoryRepositoryImpl();
-        context = new AnnotationConfigApplicationContext(ModelMapperConfig.class);
+        context = new AnnotationConfigApplicationContext();
+        context.register(ModelMapperConfig.class);
+        context.register(PostConverter.class);
+        context.refresh();
         postService = new PostService(postRepository, context.getBean(ModelMapper.class));
     }
 

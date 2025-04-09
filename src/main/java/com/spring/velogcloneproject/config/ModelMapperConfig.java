@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("com.spring.velogcloneproject")
+//@ComponentScan("com.spring.velogcloneproject")
 public class ModelMapperConfig {
     @Bean
     public ModelMapper modelMapper(PostConverter postConverter) {
